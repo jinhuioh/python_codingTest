@@ -34,8 +34,18 @@ h4 = time.time()
 print('array2',array2)
 print('일반적인 코드 수행시간: ', h3,h4)
 
+# 리스트에서 원소가 1인 개수 세기
+con = array1.count(1)
+print(con)
+
+a = [1,2,3,4,5,5,5,5]
+remove_set = {3,5}#집합자료형
+result = [i for i in a if i not in remove_set]
+print('result:',result)
+
 # n*m 크기의 2차원 리스트를 초기화할 때
 # 길이가m인 리스트를 n개 만들기
 n,m = map(int,input().split())
+# 변수값을 무시하고자 할 때 언더바_를 사용
 array3 = [[0]*m for _ in range(n)]
 print(array3)
