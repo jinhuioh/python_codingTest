@@ -13,3 +13,37 @@ for coin in array:
     n = n % coin##동전으로 나눈 나머지를 n에 넣어서 for문 돌려서 계속 빼주기.
 print(count)
 
+
+
+
+# 내가 푼 방법
+# 입력받은 거스름돈 N
+N = int(input())
+# 풀이: 큰 수부터 차례로 빼주자.
+c=0
+while N :
+    if (N-500)<0:
+        break
+    N = N-500
+    c=c+1
+print('500원개수'+c)
+
+while N :
+    if (N-100)<0:
+        break
+    N = N-100
+    c=c+1
+print(c)
+
+while N :
+    if (N-50)<0:
+        break
+    N = N-50
+    c=c+1
+print(c)
+while N :
+    if (N-10)<0:
+        break
+    N = N-10
+    c=c+1
+print('총 동전 개수'+c)
