@@ -13,5 +13,3 @@ for coin in array:
     n = n % coin##동전으로 나눈 나머지를 n에 넣어서 for문 돌려서 계속 빼주기.
 print(count)
 
-
-
