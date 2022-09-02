@@ -12,20 +12,22 @@
 # 첫째 줄에 N이 1이 될때까지 1번 혹은 2번의 과정을 수행해야 하는 횟수의 최솟값을 출력한다.
 
 # N과K를 입력받자
+n,k = map(int, (input().split()))
+count = 0
+while n is not 1:
+    if n == 1:
+        break
+    if n%k != 0:
+        n -= 1
+        count += 1
+    else:
+        n = n//k
+        count +=1
+print(count)
 
-# n,k = map(int, (input().split()))
-# count = 0
-# while n is not 1:
-#     if n == 1:
-#         break
-#     if n%k != 0:
-#         n -= 1
-#         count += 1
-#     else:
-#         n = n//k
-#         count +=1
-# print(count)
 
+# 내 풀이와의 차이점 빼는 연산을 while문 한 번에 처리함으로써 시간 단축이 됨.
+# 내 코드는 while문 한 번에 -1이 한 번 실행 되므로 처리 시간에 있어서 비효율성이 있다고 판단.
 n,k = map(int, (input().split()))
 result = 0
 while True:
