@@ -21,11 +21,12 @@ data = list(map(int,input().split()))
 data.sort()
 # data안에 있는 원소들을 차례대로 그룹으로 묶어보자
 # 예시: 1 1 2 2 2 3 3 4 4 5
+# count는 인원수를 세기 위함, result는 그룹 개수
 count,result = 0,0
-for one in data:
+for one in data: 
     # one이 1이면 count=+1하고 result가 +1, 2이면 count가 2가 되어야 result가 +1
     count =+ 1
-    # 예로 2를 두번세었을 때(count=2), one=2보다 count가 크거나 같다면 result=+1
+    # 공포도보다 인원수가 크다면 result=+1로 그룹 추가
     if count >=one:
         # count 초기화
         count = 0
