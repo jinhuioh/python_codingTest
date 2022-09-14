@@ -17,41 +17,30 @@
 # 큐 빼기(맨 앞에서 원소1개 빼내기)=dequeue=파이썬의 popleft()
 from collections import deque
 
-# 선입선출로 입구와 출구가 터널 형태로 되어있는 문제는 queue 함수를 이용한다.
+n,m = map(int, input().split())
 
-# 행렬입력받기
-n,m = map(int,input().split())
-# 그래프 입력받기
+# 2차원 리스트의 맵 정보 입력받기
+# graph = [map(int, input()) for _ in range(n)]
+# print(graph)
 graph = []
 for i in range(n):
-    graph.append(list(map(int,input())))
+    graph.append(list(map(int, input())))
 
-# 상하좌우로 움직일 좌표
-dx = [-1,1,0,0]#좌우
-dy = [0,0,-1,1]#상하
-
-# 함수화
-def bfs(x,y):
-    # 큐 함수 임포트해서 x,y좌표 넣기
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+def miro(x,y):
     queue = deque()
-    # 큐에 현재 위치 넣기
     queue.append((x,y))
-    while queue:
-        # 큐에 넣은 위치를 하나씩 빼서 while문으로 위치 연산
-        x, y = queue.popleft()
-        for i in range(4):
-            # 상하좌우로 이동
+    for i in range(4):
+        x,y = queue.popleft()
+        while queue:
             nx = x + dx[i]
             ny = y + dy[i]
-            # 그래프 범위를 넘어서면 continue(위치가 0인 것 보다 범위를 넘어서는 continue 되는 것이 먼저 실행 되어야 한다.)
-            # 위치가 0이면 continue
-            if nx < 0 or nx >= m or ny < 0 or ny >= n:
+            if nx<0 or nx>=m or ny<0 or ny>=n:
                 continue
             if graph[nx][ny] == 0:
                 continue
             if graph[nx][ny] == 1:
-                # 원래 위치에서 다음 위치로 이동할 때 +1을 해줌.
-                graph[nx][ny] = graph[x][y] + 1
+                graph[nx][ny] == graph[x][y]+1
                 queue.append((nx,ny))
     return graph[m-1][n-1]
-print(bfs(0,0))
