@@ -15,44 +15,43 @@
 # 큐
 # 큐 넣기(맨뒤에 원소1삽입)=enqueue =파이썬의 append()
 # 큐 빼기(맨 앞에서 원소1개 빼내기)=dequeue=파이썬의 popleft()
-
-# 선입선출로 입구와 출구가 터널 형태로 되어있는 문제는 queue 함수를 이용한다.
 from collections import deque
 
+# 선입선출로 입구와 출구가 터널 형태로 되어있는 문제는 queue 함수를 이용한다.
+
 # 행렬입력받기
-n, m = map(int, input().split())
+n,m = map(int,input().split())
+# 그래프 입력받기
 graph = []
 for i in range(n):
-    graph.append(list(map(int, input())))
+    graph.append(list(map(int,input())))
 
-# 이동할 4가지 방향 정의
-dx = [-1, 1, 0, 0]  # 상하
-dy = [0, 0, -1, 1]  # 좌우
+# 상하좌우로 움직일 좌표
+dx = [-1,1,0,0]#좌우
+dy = [0,0,-1,1]#상하
 
-
-# 함수구현
-def miro(x, y):
-    # 큐 구현을 위해 deque라이브러리 사용
+# 함수화
+def bfs(x,y):
+    # 큐 함수 임포트해서 x,y좌표 넣기
     queue = deque()
-    queue.append((x, y))
+    # 큐에 현재 위치 넣기
+    queue.append((x,y))
     while queue:
-        # popleft()로 맨 앞 원소 1개씩 빼내기.
+        # 큐에 넣은 위치를 하나씩 빼서 while문으로 위치 연산
         x, y = queue.popleft()
-        # 현재 위치에서 4가지 방향으로 위치 확인
         for i in range(4):
+            # 상하좌우로 이동
             nx = x + dx[i]
             ny = y + dy[i]
-            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+            # 그래프 범위를 넘어서면 continue(위치가 0인 것 보다 범위를 넘어서는 continue 되는 것이 먼저 실행 되어야 한다.)
+            # 위치가 0이면 continue
+            if nx < 0 or nx >= m or ny < 0 or ny >= n:
                 continue
-            # 괴물이 있는 경우 무시
             if graph[nx][ny] == 0:
                 continue
-            # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
             if graph[nx][ny] == 1:
+                # 원래 위치에서 다음 위치로 이동할 때 +1을 해줌.
                 graph[nx][ny] = graph[x][y] + 1
-                queue.append((nx, ny))
-            # 가장 오른쪽 아래까지의 최단 거리 반환
-    return graph[n - 1][m - 1]
-
-
-print(miro(0, 0))
+                queue.append((nx,ny))
+    return graph[m-1][n-1]
+print(bfs(0,0))
